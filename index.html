@@ -48,9 +48,12 @@
                 password.style.border = '1px solid red'
                 return false
             }
+            // Remove this below code to stop from form submitting to action url
             e.preventDefault()
+            // remove the e.preventDefault() above
             email.style.border = '1px grey solid'
             password.style.border = '1px grey solid'
+            error('')
             alert('Email: '+email.value+' Password: '+password.value);
             return true
         })
