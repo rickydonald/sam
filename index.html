@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="title">Login</h1>
+        <!-- Form (use: post method), onsubmit form returns false, use your validation url in action and remove onsubmit -->
+        <form action="" method="get" id="login-form" class="login-form" onsubmit="return false;">
+            <input type="email" placeholder="Email/Username" name="email" id="email" class="input-field">
+            <input type="password" name="password" id="password" placeholder="Password" class="input-field">
+            <button type="submit" name="submit-btn" class="submit-btn">Submit</button>
+            <div class="error-container"></div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.querySelector('#login-form')
+        const email = document.querySelector('#email')
+        const password = document.querySelector('#password')
+        const button = document.querySelector('#submit-btn')
+        let email_pattern = /[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm
+
+        // Error to throw
+        function error(query) {
+            document.querySelector('.error-container').innerHTML = '<p class="error">' + query + '</p>'
+        }
+
+        // On Submit Functions
+        form.addEventListener('submit', (e) => {
+            if (email_pattern.test(email.value) == false || email.value == '') {
+                error('Enter a valid email!')
+                email.style.border = '1px solid red'
+                return false
+            } else if (password.value == '') {
+                error('Enter password!')
+                password.style.border = '1px solid red'
+                return false
+            }
+            e.preventDefault()
+            alert('Email: '+email.value+' Password: '+password.value);
+            return true
+        })
+    </script>
+</body>
+
+</html>
